@@ -26,7 +26,7 @@ import willian.backJava.util.CriptografiaAES;
 
 public class UsuarioBOImpl implements UsuarioBO {
 
-	private static final String CHAVE = "WillKey123";
+	private static final String CHAVE = "WillKey123&";
 
 	@Inject
 	private Logger log;
