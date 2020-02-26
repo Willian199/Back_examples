@@ -1,5 +1,6 @@
 package willian.backJava.daoImpl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,18 +86,36 @@ public abstract class AbstractDAOImpl<T> extends JPAGeneric<T> implements Abstra
 	@Override
 	public T inserir(T entity) {
 		entityManager.persist(entity);
-		return entity;
-	}
-
-	@Override
-	public T salvar(T entity) {
-		entityManager.merge(entity);
+		entityManager.flush();
 
 		return entity;
 	}
 
 	@Override
-	public List<T> salvar(List<T> entity) {
+	public T salvar(T entity) throws Exception {
+		try {
+			Long id = (Long) entity.getClass().getMethod("getId").invoke(entity);
+
+			if (id != null && id != 0L) {
+				entityManager.merge(entity);
+			} else {
+				entityManager.persist(entity);
+			}
+
+			entityManager.flush();
+
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
+				| SecurityException e) {
+
+			throw new Exception("Não foi possivel salvar o item");
+		}
+
+		return entity;
+
+	}
+
+	@Override
+	public List<T> salvar(List<T> entity) throws Exception {
 		List<T> retorno = new ArrayList<>();
 		for (T t : entity) {
 			retorno.add(salvar(t));

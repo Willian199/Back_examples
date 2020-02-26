@@ -1,16 +1,7 @@
 package willian.backJava.service;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.text.ParseException;
 import java.util.List;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -51,9 +42,7 @@ public interface UsuarioService {
 	@POST
 	@Path("/salvar")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Boolean salvar(UsuarioDTO usuarioDTO) throws ParseException, InvalidKeyException,
-			InvalidAlgorithmParameterException, UnsupportedEncodingException, NoSuchAlgorithmException,
-			NoSuchProviderException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException;
+	public Boolean salvar(UsuarioDTO usuarioDTO) throws Exception;
 
 	@DELETE
 	@Path("/excluir")

@@ -12,11 +12,11 @@ public interface AbstractDAO<T> {
 
 	List<T> consultarTodos();
 
-	T salvar(T entity);
+	T salvar(T entity) throws Exception;
 
 	void excluirPorId(Long id);
 
-	List<T> salvar(List<T> entity);
+	List<T> salvar(List<T> entity) throws Exception;
 
 	List<T> buscarPorCampo(String campo, String valor);
 

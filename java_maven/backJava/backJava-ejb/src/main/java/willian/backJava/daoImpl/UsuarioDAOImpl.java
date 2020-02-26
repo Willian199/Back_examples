@@ -4,8 +4,6 @@ import static willian.backJava.model.QUsuario.usuario;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
@@ -17,9 +15,6 @@ import willian.backJava.model.Usuario;
 
 @Stateless
 public class UsuarioDAOImpl extends AbstractDAOImpl<Usuario> implements UsuarioDAO {
-
-	@Inject
-	private EntityManager em;
 
 	@Override
 	@PostConstruct

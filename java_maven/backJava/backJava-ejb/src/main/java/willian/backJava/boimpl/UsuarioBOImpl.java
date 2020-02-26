@@ -1,24 +1,14 @@
 package willian.backJava.boimpl;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.inject.Inject;
 
 import willian.backJava.bo.UsuarioBO;
 import willian.backJava.dao.UsuarioDAO;
-import willian.backJava.data.UsuarioData;
 import willian.backJava.dto.UsuarioDTO;
 import willian.backJava.dto.UsuarioLoginDTO;
 import willian.backJava.model.Usuario;
@@ -33,9 +23,6 @@ public class UsuarioBOImpl implements UsuarioBO {
 
 	@Inject
 	private UsuarioDAO usuarioDAO;
-
-	@Inject
-	private UsuarioData usuarioData;
 
 	@Override
 	public List<Usuario> buscarTodos() {
@@ -63,9 +50,7 @@ public class UsuarioBOImpl implements UsuarioBO {
 	}
 
 	@Override
-	public Boolean salvar(UsuarioDTO usuarioDTO) throws ParseException, InvalidKeyException,
-			InvalidAlgorithmParameterException, UnsupportedEncodingException, NoSuchAlgorithmException,
-			NoSuchProviderException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	public Boolean salvar(UsuarioDTO usuarioDTO) throws Exception {
 		log.info("Executando metodo salvar");
 
 		Usuario usuario = null;
@@ -94,7 +79,7 @@ public class UsuarioBOImpl implements UsuarioBO {
 		usuario.setDataManutencao(dataAtual);
 		usuario.setDataNascimento(formatter.parse(usuarioDTO.getDataNascimento()));
 
-		usuarioDAO.inserir(usuario);
+		usuarioDAO.salvar(usuario);
 
 		return Boolean.TRUE;
 	}
