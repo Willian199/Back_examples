@@ -94,7 +94,7 @@ public class UsuarioBOImpl implements UsuarioBO {
 		usuario.setDataManutencao(dataAtual);
 		usuario.setDataNascimento(formatter.parse(usuarioDTO.getDataNascimento()));
 
-		usuarioData.inserir(usuario);
+		usuarioDAO.inserir(usuario);
 
 		return Boolean.TRUE;
 	}

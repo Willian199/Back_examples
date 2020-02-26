@@ -3,6 +3,7 @@ package willian.backJava.daoImpl;
 import static willian.backJava.model.QUsuario.usuario;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -14,6 +15,7 @@ import willian.backJava.dao.UsuarioDAO;
 import willian.backJava.dto.UsuarioLoginDTO;
 import willian.backJava.model.Usuario;
 
+@Stateless
 public class UsuarioDAOImpl extends AbstractDAOImpl<Usuario> implements UsuarioDAO {
 
 	@Inject
@@ -22,7 +24,6 @@ public class UsuarioDAOImpl extends AbstractDAOImpl<Usuario> implements UsuarioD
 	@Override
 	@PostConstruct
 	protected void init() {
-		setEntityManager(em);
 		setEntityClass(Usuario.class);
 
 	}
