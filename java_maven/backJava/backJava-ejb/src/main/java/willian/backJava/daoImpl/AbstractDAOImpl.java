@@ -32,7 +32,7 @@ public abstract class AbstractDAOImpl<T> extends JPAGeneric<T> implements Abstra
 	 * 
 	 */
 	@PostConstruct
-	abstract protected void init();
+	protected abstract void init();
 
 	protected void setEntityClass(Class<T> entityClass) {
 		this.entityClass = entityClass;

@@ -1,5 +1,6 @@
 package willian.backJava.boimpl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import willian.backJava.dao.UsuarioDAO;
 import willian.backJava.dto.UsuarioDTO;
 import willian.backJava.dto.UsuarioLoginDTO;
 import willian.backJava.model.Usuario;
+import willian.backJava.util.Convert;
 import willian.backJava.util.CriptografiaAES;
 
 public class UsuarioBOImpl implements UsuarioBO {
@@ -27,6 +29,21 @@ public class UsuarioBOImpl implements UsuarioBO {
 	@Override
 	public List<Usuario> buscarTodos() {
 		log.info("Executando metodo buscarTodos");
+
+		UsuarioDTO usr = new UsuarioDTO();
+		usr.setSenha("TESTE");
+		try {
+
+			UsuarioLoginDTO obj = new UsuarioLoginDTO();
+			Convert.convert(usr, obj);
+			System.out.println(obj.getSenha());
+
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
+				| SecurityException | InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return usuarioDAO.consultarTodos();
 	}
 
